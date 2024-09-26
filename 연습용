@@ -1,0 +1,81 @@
+#include <stdio.h>
+
+#define MAX_PRODUCT 100
+
+typedef struct {
+    int id;
+    int stock;
+} Product;
+
+Product products[MAX_PRODUCT];
+int productCount = 0;
+
+void addProduct() {
+    if (productCount >= MAX_PRODUCT) {
+        printf("더 이상 상품을 추가할 수 없습니다.\n");
+        return;
+    }
+
+    printf("상품 ID를 입력하세요: ");
+    scanf("%d", &products[productCount].id);
+    printf("입고 수량을 입력하세요: ");
+    scanf("%d", &products[productCount].stock);
+
+    productCount++;
+    printf("상품이 추가되었습니다.\n");
+}
+
+void checkStock() {
+    int id, found = 0;
+
+    printf("조회할 상품 ID를 입력하세요: ");
+    scanf("%d", &id);
+
+    for (int i = 0; i < productCount; i++) {
+        if (products[i].id == id) {
+            printf("해당 상품의 재고 수량은 %d개입니다.\n", products[i].stock);
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("해당 상품이 없습니다.\n");
+    }
+}
+
+void showAllStock() {
+    printf("전체 재고 현황\n");
+    for (int i = 0; i < productCount; i++) {
+        printf("상품 ID: %d, 재고 수량: %d\n", products[i].id, products[i].stock);
+    }
+}
+
+int main() {
+    int choice;
+
+    while (1) {
+        printf("1. 상품 추가\n");
+        printf("2. 재고 조회\n");
+        printf("3. 전체 재고 조회\n");
+        printf("0. 종료\n");
+        printf("선택: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                addProduct();
+                break;
+            case 2:
+                checkStock();
+                break;
+            case 3:
+                showAllStock();
+                break;
+            case 0:
+                return 0;
+            default:
+                printf("잘못된 입력입니다.\n");
+        }
+    }
+}
