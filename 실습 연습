@@ -1,0 +1,68 @@
+#define _CRT_SECURE_NO_WARNINGS
+#define MAX_PRODUCTS 100
+#include <stdio.h>
+
+typedef struct {
+    int id;        // 상품 ID
+    char name[30]; // 상품명
+    int price;     // 상품 가격
+    int stock;     // 재고 수량
+} Product;
+
+int main()
+{
+    int count;
+    Product products[MAX_PRODUCTS];
+    int sold, id, i;
+
+    // 상품 개수 입력
+    do {
+        printf("상품 개수(종류)입력 (1 ~ 100): ");
+        scanf("%d", &count);
+    } while (count < 1 || count > 100);
+
+    // 상품 정보 입력
+    for (i = 0; i < count; i++) {
+        products[i].id = i + 1;  // 상품 ID는 1부터 시작
+        printf("\n상품 %d의 이름을 입력하세요: ", products[i].id);
+        scanf("%s", products[i].name);
+        printf("상품 %s의 가격을 입력하세요: ", products[i].name);
+        scanf("%d", &products[i].price);
+        printf("상품 %s의 입고 수량을 입력하세요: ", products[i].name);
+        scanf("%d", &products[i].stock);
+    }
+
+    // 판매 수량 입력
+    printf("\n상품 별 판매수량을 입력하세요:\n");
+    for (i = 0; i < count; i++) {
+        printf("%s 판매수량: ", products[i].name);
+        scanf("%d", &sold);
+        if (sold <= products[i].stock) {
+            products[i].stock -= sold;
+            printf("%s의 남은 재고: %d\n", products[i].name, products[i].stock);
+        } else {
+            printf("%s의 재고가 부족합니다. 최대 판매 가능 수량: %d\n", products[i].name, products[i].stock);
+        }
+    }
+
+    // 특정 상품의 재고 확인
+    while (1) {
+        printf("\n재고 수량을 확인할 상품 ID를 입력 (1 ~ %d, 종료는 0): ", count);
+        scanf("%d", &id);
+
+        if (id == 0) {
+            printf("프로그램을 종료합니다.\n");
+            break;
+        } else if (id > 0 && id <= count) {
+            printf("\n상품 ID %d - %s의 남은 재고 수량: %d\n", products[id - 1].id, products[id - 1].name, products[id - 1].stock);
+            printf("모든 상품의 재고 수량:\n");
+            for (i = 0; i < count; i++) {
+                printf("ID %d - %s: %d개\n", products[i].id, products[i].name, products[i].stock);
+            }
+        } else {
+            printf("잘못된 ID입니다. 다시 입력하세요.\n");
+        }
+    }
+
+    return 0;
+}
