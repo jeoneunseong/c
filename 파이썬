@@ -1,0 +1,35 @@
+from tkinter import*
+num=0
+fileList=['jeju1.gif','jeju2.gif','jeju3.gif','jeju4.gif',' jeju5.gif',]
+w=Tk()
+w.geometry('700x500')
+w.title('Picture Frame')
+def nextClk():
+        global num
+        num=num+1
+        if num > 4:
+             num=0
+        photo=photoImage(file='gif/' + fileList[num])
+        pLabel.image=photo
+        pLabel.config(image=photo)
+        fileLabel.config(text=fileList[num])
+def prevClk():
+        global num
+        num=num-1
+        if num < 0:
+                num=4
+        photo=photoImage(file='gif/' + fileList[num])
+        pLabel.image=photo
+        pLabel.config(image=photo)
+        fileLabel.config(text=fileList[num])
+
+photo=PhotoImage(file='gif/' + fileList[0])
+pLabel=Label(w, imge=photo)
+pLabel.place(x=20, y=40)
+fileLabe=Label(w, text=fileList[0])
+fileLabe.place(w=320, y=10)
+rightBtn=Button(w, text='>>', command=nextClk)
+rightBtn.place(x=350+175, y=10)
+leftBtn=Button(w, text='<<', command=nextClk)
+leftBtn.place(x=175, y=10)
+w.mainloop()
