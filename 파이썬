@@ -3,7 +3,7 @@ num=0
 fileList=['jeju1.gif','jeju2.gif','jeju3.gif','jeju4.gif',' jeju5.gif',]
 w=Tk()
 w.geometry('700x500')
-w.title('Picture Frame')
+w.title('전은성')
 def nextClk():
         global num
         num=num+1
@@ -24,7 +24,7 @@ def prevClk():
         fileLabel.config(text=fileList[num])
 
 photo=PhotoImage(file='gif/' + fileList[0])
-pLabel=Label(w, imge=photo)
+pLabel=Label(w, image=photo)
 pLabel.place(x=20, y=40)
 fileLabe=Label(w, text=fileList[0])
 fileLabe.place(w=320, y=10)
