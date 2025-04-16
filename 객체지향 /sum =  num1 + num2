@@ -1,0 +1,23 @@
+package JAVA_HOME_EUN1;
+
+import java.util.Scanner;
+
+public class Home2 {
+
+	public static void main(String[] args) {
+		
+		int iNum1, iNum2;
+		int iSum;
+		
+		Scanner scan = new Scanner(System.in);
+		iNum1 = scan.nextInt();
+		iNum2 = scan.nextInt();
+		
+		iSum = iNum1 + iNum2;
+		
+		// sum = num1 + num2
+		System.out.println(iSum + " = " + iNum1 + " + " + iNum2);
+
+	} //main()
+
+} // FirstJava class
