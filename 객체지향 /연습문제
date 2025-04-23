@@ -1,0 +1,411 @@
+**사용자에게서 정수 다섯 개를 입력 받는다. 
+첫 번째 큰 수와 두 번째 큰 수를 각각 출력하시오.
+import java.util.Scanner;  
+// Scanner 클래스를 사용하기 위해 필요한 import 문
+// 사용자로부터 입력을 받을 때 사용됨
+
+public class Main {  
+    // 자바 프로그램의 시작 클래스, 파일 이름과 동일하게 "Main"이어야 함
+
+    public static void main(String[] args) {
+        // main 메서드는 자바 프로그램 실행 시 가장 먼저 호출되는 메서드
+        // static: 객체 생성 없이 실행 가능
+        // void: 반환값 없음
+        // String[] args: 커맨드라인 인자 배열
+
+        Scanner scanner = new Scanner(System.in);
+        // Scanner 객체 생성: 사용자 입력을 받을 수 있도록 함
+        // System.in은 키보드 입력 스트림을 의미
+
+        int[] nums = new int[5];
+        // 크기 5짜리 정수형 배열 생성
+        // 사용자가 입력한 5개의 수를 저장할 용도
+
+        for (int i = 0; i < 5; i++) {
+            nums[i] = scanner.nextInt();
+            // 반복문을 통해 사용자로부터 5개의 정수를 입력받아 배열에 저장
+        }
+
+        int max1 = Integer.MIN_VALUE;
+        int max2 = Integer.MIN_VALUE;
+        // 가장 큰 수와 두 번째로 큰 수를 저장할 변수
+        // Integer.MIN_VALUE는 정수형이 가질 수 있는 가장 작은 값으로,
+        // 어떤 수가 입력되더라도 처음 비교에 통과하게 하기 위한 초기값
+
+        for (int num : nums) {
+            // 향상된 for문(for-each loop)을 사용하여 배열을 순회
+            if (num > max1) {
+                // 현재 수가 max1보다 크면 max1, max2를 각각 갱신
+                max2 = max1;  // max1을 max2로 내림
+                max1 = num;   // 새로운 max1 저장
+            } else if (num > max2 && num != max1) {
+                // max1보다 작지만 max2보다 크고 max1과 다를 경우 max2 갱신
+                max2 = num;
+            }
+        }
+
+        System.out.println(max1);
+        System.out.println(max2);
+        // 결과 출력: 첫 번째로 큰 수와 두 번째로 큰 수를 각각 출력
+    }
+}
+///////////////////////////
+배열에 10개의 숫자를 입력 받아서 저장하시오.
+  - 숫자는 1 혹은 2 혹은 3 중의 하나이다.
+  - 각 숫자의 개수 만큼 별표를 출력하시오.
+import java.util.Scanner;
+// Scanner 클래스를 사용하기 위해 java.util 패키지를 import
+// 사용자로부터 숫자 입력을 받을 때 필요함
+
+public class Main {
+    // 자바 애플리케이션의 진입점인 main 메서드를 포함하는 클래스
+    // 온라인 채점 시스템에서는 클래스 이름이 반드시 Main이어야 할 수 있음
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Scanner 객체를 생성해서 사용자 입력을 받음
+        // System.in은 키보드 입력을 의미함
+
+        int[] count = new int[4];  
+        // 숫자 1, 2, 3의 등장 횟수를 저장할 배열
+        // count[1] = 1의 개수, count[2] = 2의 개수, count[3] = 3의 개수
+        // count[0]은 사용하지 않음 (편의를 위해 인덱스를 숫자와 일치시킴)
+
+        for (int i = 0; i < 10; i++) {
+            int num = scanner.nextInt();  // 사용자로부터 정수 1개 입력받음
+            if (num >= 1 && num <= 3) {
+                count[num]++;  // 입력값이 1~3 범위 안이면 해당 숫자 카운트 증가
+            }
+            // 1~3 이외의 값은 무시됨 (오류 메시지 출력 없이 생략)
+        }
+
+        // 각 숫자(1, 2, 3)에 대해 개수만큼 별(*) 출력
+        for (int i = 1; i <= 3; i++) {
+            System.out.print(i + ":");
+            // 숫자와 콜론 출력. 예: 1:  또는 2:  등
+
+            for (int j = 0; j < count[i]; j++) {
+                System.out.print("*");
+                // 해당 숫자의 개수만큼 * 출력
+            }
+
+            System.out.println();  
+            // 줄 바꿈을 해서 다음 숫자의 출력이 다음 줄에 오도록 함
+        }
+    }
+}
+*************************
+배열에 7개의 문자를 입력 받아서 저장하시오.
+문자 중에서 cat가 몇 번 있는지 횟수를 출력하시오. 
+cat 가 이어진 경우만 찾는다.
+
+import java.util.Scanner;  
+// Scanner 클래스를 사용하기 위해 import
+// 사용자 입력을 받을 때 필요함
+
+public class Main {
+    // 자바 프로그램의 진입점이 포함된 클래스
+    // 온라인 채점 시스템에서는 클래스 이름이 반드시 'Main'이어야 할 수 있음
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Scanner 객체 생성 → 키보드 입력을 받기 위함
+
+        char[] arr = new char[7];
+        // 문자 7개를 저장할 배열 선언
+
+        String input = scanner.nextLine();
+        // 한 줄 입력 받아서 문자열로 저장
+        // ex: "catbcat"
+
+        if (input.length() != 7) {
+            return;
+        }
+        // 입력 문자열이 정확히 7글자가 아니면 종료
+        // 문제 조건에 맞지 않기 때문
+
+        for (int i = 0; i < 7; i++) {
+            arr[i] = input.charAt(i);
+        }
+        // 입력 문자열에서 문자 하나씩 꺼내서 배열에 저장
+
+        int count = 0;
+        // "cat"이 몇 번 나오는지 세기 위한 변수
+
+        for (int i = 0; i <= 4; i++) {
+            // 인덱스 i부터 i+2까지 3글자를 확인
+            // 7글자 중 연속된 3글자를 보려면 최대 인덱스는 4까지 가능
+
+            if (arr[i] == 'c' && arr[i + 1] == 'a' && arr[i + 2] == 't') {
+                count++;
+                // 세 글자가 순서대로 'c', 'a', 't'인 경우 count 증가
+            }
+        }
+
+        System.out.println(count);
+        // 최종 결과 출력: "cat"이 몇 번 나왔는지
+    }
+}
+************************
+(Hangman) 정답이 되는 3글자의 영단어를 입력한 후 엔터키를 누른다.
+  - 정답을 맞추기 위하여 한 글자씩 입력한 후 엔터키를 누른다.
+  - 5번까지 시도할 수 있다.
+  - 글자를 입력할 때 마다 현재 상태를 화면에 출력한다.
+
+  - 정답을 맞추거나, 5번이 경과하면 프로그램은 종료된다.
+      Hint: 문자 입력 후에는 getchar( ) 함수를 추가하여 엔터 문자를 버퍼에서 제거해야, 
+               다음에 문자 입력이 정상적으로 실행된다.
+
+  - 출력할 때 빈칸이 각 문자의 앞에 오도록 하시오.  예) □1□2□3
+
+    (□ 기호는 공백 1칸을 의미)
+import java.util.Scanner;  
+// 사용자 입력을 받기 위한 Scanner 클래스 임포트
+
+public class Main {
+    // 자바 프로그램의 시작점이 되는 클래스
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Scanner 객체 생성 → 키보드 입력 받기
+
+        String answer = scanner.nextLine();  
+        // 첫 줄에서 정답이 되는 3글자 단어 입력받음 (예: "cat", "dog")
+
+        char[] display = {'_', '_', '_'};  
+        // 사용자가 맞춘 글자를 표시할 배열, 처음엔 모두 숨김 상태('_')
+
+        int tries = 0;              
+        // 시도 횟수를 저장할 변수 (최대 5회)
+        final int MAX_TRIES = 5;   
+        // 최대 시도 횟수는 5번으로 고정
+
+        while (tries < MAX_TRIES) {
+            char guess = scanner.nextLine().charAt(0);
+            // 사용자가 입력한 알파벳 한 글자를 가져옴
+
+            boolean found = false;  
+            // 현재 입력한 문자가 정답에 포함되어 있는지 여부
+
+            for (int i = 0; i < 3; i++) {
+                if (answer.charAt(i) == guess) {
+                    display[i] = guess;
+                    // 정답 단어의 각 위치와 비교해서 일치하면 표시 배열에 반영
+                    found = true;
+                }
+            }
+
+            for (int i = 0; i < 3; i++) {
+                System.out.print(display[i]);
+            }
+            System.out.println();
+            // 현재 상태를 출력 (_ca_ 처럼 보여줌)
+
+            if (new String(display).equals(answer)) {
+                // 사용자가 모든 글자를 맞췄는지 확인
+                break;  // 맞췄으면 프로그램 종료
+            }
+
+            tries++;
+            // 시도 횟수 증가
+        }
+    }
+}
+***********************
+10개의 정수를 입력 받는다. 
+각 정수가 몇 번 등장했는지를 입력받은 순서대로 출력하시오. 
+입력 받은 숫자와 총 입력 횟수를 함께 출력하시오. 
+동일한 숫자에 대해서는 한번만 출력하시오
+import java.util.*;
+// Scanner, LinkedHashMap, HashSet 사용을 위한 import
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); // 사용자 입력을 받기 위한 Scanner 생성
+
+        int[] nums = new int[10]; // 10개의 입력 숫자를 저장할 배열
+        LinkedHashMap<Integer, Integer> countMap = new LinkedHashMap<>();
+        // 숫자의 등장 횟수를 저장하고, 입력 순서를 유지하기 위한 LinkedHashMap
+
+        // 숫자 10개 입력받고 등장 횟수 저장
+        for (int i = 0; i < 10; i++) {
+            nums[i] = scanner.nextInt(); // 숫자 입력
+            countMap.put(nums[i], countMap.getOrDefault(nums[i], 0) + 1);
+            // 이미 있으면 값 +1, 없으면 0으로 시작해서 +1
+        }
+
+        HashSet<Integer> printed = new HashSet<>();
+        // 이미 출력한 숫자를 저장해서 중복 출력 방지
+
+        // 입력된 순서대로 출력 (중복 없이)
+        for (int i = 0; i < 10; i++) {
+            int num = nums[i];
+            if (!printed.contains(num)) {
+                System.out.println(num + " " + countMap.get(num));
+                printed.add(num); // 출력한 숫자 기록
+            }
+        }
+    }
+}
+********************
+배열에 5개의 정수를 입력 받아서 저장하시오.
+  - 첫 번째 원소와 두 번째 원소를 비교하여 
+    첫 번째 원소가 두 번째 원소보다 크면 서로 교환하여 저장하시오.
+  - 이 교환 연산을 첫 번째 원소부터 마지막 바로 전 원소까지 반복하시오.
+  - 참고 : 제일 큰 수가 맨 뒤로 이동한다.
+
+import java.util.Scanner;  
+// 사용자 입력을 받기 위한 Scanner 클래스 import
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);  
+        // Scanner 객체 생성 → 사용자로부터 입력 받기
+
+        int[] arr = new int[5];  
+        // 입력받을 정수 5개를 저장할 배열
+
+        // 사용자로부터 정수 5개 입력받아 배열에 저장
+        for (int i = 0; i < 5; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        // 한 번의 버블 정렬 회전 수행 (앞에서부터 두 수를 비교하며 큰 수를 뒤로 보냄)
+        for (int i = 0; i < 4; i++) {
+            // 마지막 요소 바로 전까지만 비교 (i = 0 ~ 3)
+            if (arr[i] > arr[i + 1]) {
+                // 앞의 수가 더 크면 위치를 서로 바꿈
+                int temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+            }
+        }
+
+        // 정렬 결과 출력 (각 요소를 한 줄씩 출력)
+        for (int i = 0; i < 5; i++) {
+            System.out.println(arr[i]);
+        }
+    }
+}
+**********************
+사용자에게서 총 9개의 숫자를 입력 받아, 
+3 X 3 배열을 초기화 하시오. 
+3 X 3 배열에서 대각선 원소들의 합을 출력하시오.
+import java.util.Scanner;  
+// 사용자 입력을 받기 위해 Scanner 클래스 import
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);  
+        // Scanner 객체 생성 → 사용자로부터 숫자 입력 받기 위해
+
+        int[][] arr = new int[3][3];  
+        // 3×3 크기의 2차원 배열 선언 (총 9개의 정수를 저장)
+
+        // 사용자로부터 9개의 숫자 입력 받아 배열에 채움
+        for (int i = 0; i < 3; i++) {         // 행 반복 (0 ~ 2)
+            for (int j = 0; j < 3; j++) {     // 열 반복 (0 ~ 2)
+                arr[i][j] = scanner.nextInt();  // 입력값 저장
+            }
+        }
+
+        int sum = 0;  
+        // 대각선 원소의 합을 저장할 변수
+
+        for (int i = 0; i < 3; i++) {
+            sum += arr[i][i];  
+            // 대각선 원소는 (0,0), (1,1), (2,2) → i와 j가 같은 위치
+        }
+
+        System.out.println(sum);  
+        // 대각선 합 결과 출력
+    }
+}
+**********************
+학생 3명의 국어, 영어 성적이 있다. 
+  - 이 자료를 저장하기 위한 2차원 배열을 선언 하시오. 
+  - 학생 별 국어와 영어 성적을 사용자로부터 입력 받으시오.
+  - 학생 별 국어와 영어 성적의 합을 각각 출력하시오.
+
+              국어      영어   
+학생A     10           20
+학생B      30          40
+학생C      50          60
+
+import java.util.Scanner;  
+// 사용자 입력을 받기 위한 Scanner 클래스 import
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);  
+        // Scanner 객체 생성 → 사용자로부터 입력 받기 위해
+
+        int[][] scores = new int[3][2];  
+        // 3명의 학생, 2과목(국어, 영어) 점수를 저장할 2차원 배열 선언
+        // scores[i][0] = i번째 학생의 국어 점수
+        // scores[i][1] = i번째 학생의 영어 점수
+
+        // 사용자로부터 6개의 점수를 입력받아 배열에 저장
+        for (int i = 0; i < 3; i++) {        // 학생 수만큼 반복 (0~2)
+            for (int j = 0; j < 2; j++) {    // 과목 수만큼 반복 (0: 국어, 1: 영어)
+                scores[i][j] = scanner.nextInt();
+            }
+        }
+
+        // 각 학생의 총점(국어 + 영어)을 계산해서 출력
+        for (int i = 0; i < 3; i++) {
+            int sum = scores[i][0] + scores[i][1];  // i번째 학생의 총합
+            System.out.println(sum);                // 총합 출력
+        }
+    }
+}
+**********************
+사용자에게서 0~5 까지의 숫자 세 개를 입력 받아,  
+각 숫자에 해당하는 영어를 출력하시오.
+  - 2차원 배열을 사용하시오.  char x[6][5] = { 'Z', 'E', 'R', 'O', '-', 'O', 'N', ... };
+
+입력숫자  영어 (다섯 글자) 출력
+    0                  ZERO-
+    1                  ONE--
+    2                  TWO--
+    3                  THREE
+    4                  FOUR-
+    5                  FIVE-
+import java.util.Scanner;
+// 사용자 입력을 받기 위한 Scanner 클래스 import
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Scanner 객체 생성 → 사용자 입력 처리용
+
+        // 숫자 0~5에 대응하는 영어 단어를 5글자로 표현한 2차원 문자 배열
+        char[][] x = {
+            {'Z', 'E', 'R', 'O', '-'},   // 0 → ZERO-
+            {'O', 'N', 'E', '-', '-'},   // 1 → ONE--
+            {'T', 'W', 'O', '-', '-'},   // 2 → TWO--
+            {'T', 'H', 'R', 'E', 'E'},   // 3 → THREE
+            {'F', 'O', 'U', 'R', '-'},   // 4 → FOUR-
+            {'F', 'I', 'V', 'E', '-'}    // 5 → FIVE-
+        };
+
+        int[] nums = new int[3];  // 사용자로부터 입력받을 숫자 3개 저장용 배열
+
+        // 숫자 3개 입력받기 (각각 0 ~ 5 사이의 값이어야 함)
+        for (int i = 0; i < 3; i++) {
+            nums[i] = scanner.nextInt();
+        }
+
+        // 입력된 숫자에 대응하는 영어 단어 출력
+        for (int i = 0; i < 3; i++) {
+            int n = nums[i];  // 현재 숫자
+            for (int j = 0; j < 5; j++) {
+                System.out.print(x[n][j]);  // 해당 숫자에 대응하는 문자 하나씩 출력
+            }
+            System.out.println();  // 각 단어 출력 후 줄바꿈
+        }
+    }
+}
+
+******************
+
