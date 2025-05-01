@@ -1,0 +1,32 @@
+import java.awt.*;
+import javax.swing.*;
+
+public class Eun
+{
+	public static void main(String[] args) {
+		
+		JFrame frame = new JFrame("GUT Eun");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel primaryPanel = new JPanel();
+		primaryPanel.setPreferredSize(new Dimension(400,200));
+		primaryPanel.setBackground(Color.white);
+		primaryPanel.setLayout(null); //layout manager disable
+		
+		JLabel lblText1 = new JLabel("Text Eun");
+		lblText1.setFont(new Font ("Verdana", Font.BOLD+Font.ITALIC, 20));
+		lblText1.setForeground(Color.blue);
+		lblText1.setBounds(50, 50, 300, 50);
+		primaryPanel.add(lblText1);
+		
+		JLabel lblText2 = new JLabel("Text Eun");
+		lblText2.setFont(new Font ("Verdana", Font.BOLD+Font.ITALIC, 20));
+		lblText2.setForeground(Color.red);
+		lblText1.setBounds(50, 100, 300, 50);
+		primaryPanel.add(lblText2);
+		
+		frame.getContentPane().add(primaryPanel);
+		frame.pack();
+		frame.setVisible(true);
+	}
+}
